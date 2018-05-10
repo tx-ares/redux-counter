@@ -16,8 +16,17 @@ class Posts extends Component { // eslint-disable-line react/prefer-stateless-fu
   }
 
   render() {
+    const postItems = this.state.posts.map(post => (
+        <div key={post.id}>
+            <h3>{post.title}</h3>
+            <p>{post.body}</p>
+        </div>
+    ));
     return (
+    <div>
       <div>Posts</div>
+      {postItems}
+    </div>
     );
   }
 }
