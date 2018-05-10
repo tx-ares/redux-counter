@@ -8,10 +8,16 @@ const initialState = { //Exactly what it sounds like.  State before it's changed
 export default function(state = initialState, action) {
     switch(action.type) {
         case FETCH_POSTS:
-            console.log('reducer is firing')
+            console.log('Reducer: FETCH_POSTS case is firing')
             return {
                 ...state,
-                items: action.payload // This is coming from postActions.js See the fetch call.
+                items: action.payload // This is coming from postActions.js See the fetch call fetchPosts.
+            }
+        case NEW_POST:
+            console.log('Reducer: FETCH_POSTS case is firing')
+            return {
+                ...state,
+                item: action.payload // This is coming from postActions.js See the fetch call for createPost.
             }
         default:
             return state;
