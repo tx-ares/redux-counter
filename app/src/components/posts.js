@@ -13,8 +13,14 @@ class Posts extends Component { // eslint-disable-line react/prefer-stateless-fu
 
   // The above is no longer needed because state is being handled in the store now, which is 'Provided' to the Posts component.
 
-  componentWillMount() {
+  componentWillMount() { // This runs every time this component is called.
       this.props.fetchPosts();
+  }
+
+  componentWillReceiveProps(nextProps) { // This runs when props are sent to this component.
+      if(nextProps.newPost) {
+          this.props.posts.unshift(nextProps.newPost); // Add to beginning of array. 
+      }
   }
 
   render() {
@@ -35,11 +41,13 @@ class Posts extends Component { // eslint-disable-line react/prefer-stateless-fu
 
 Posts.propTypes = {
     fetchPosts: PropTypes.func.isRequired,
-    posts: PropTypes.array.isRequired
+    posts: PropTypes.array.isRequired,
+    newPost: PropTypes.object
 };
 
 const mapStateToProps = state => ({
     posts: state.posts.items,
+    newPost: state.posts.item
  })
 
 export default connect(mapStateToProps, { fetchPosts })(Posts);
