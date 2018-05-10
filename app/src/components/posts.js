@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/postActions'
 
 class Posts extends Component { // eslint-disable-line react/prefer-stateless-function
-  constructor(props) { // This is ALWAYS required to create a component level state.  Remember this.
-      super(props); //
-      this.state = { //
-          posts: [] //
-      } //
-  } // - All this.
+  // constructor(props) { // This is ALWAYS required to create a component level state.  Remember this.
+  //     super(props); //
+  //     this.state = { //
+  //         posts: [] //
+  //     } //
+  // } // - All this.
+
+  // The above is no longer needed because state is being handled in the store now, which is 'Provided' to the Posts component.
 
   componentWillMount() {
       fetch('https://jsonplaceholder.typicode.com/posts') // This is the API call. Will fetch dummy data first,
