@@ -24,7 +24,7 @@ class PostForm extends Component { // eslint-disable-line react/prefer-stateless
 
   onSubmit(e) {
       e.preventDefault();
-      if(!err) {
+      // if(!err) {
           const post = {
               title: this.state.title,
               body: this.state.body
@@ -32,8 +32,8 @@ class PostForm extends Component { // eslint-disable-line react/prefer-stateless
 
           // Call action
           this.props.createPost(post);
-          resetForm();
-      }
+          // resetForm();
+      // }
   }
 
   render() {
