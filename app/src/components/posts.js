@@ -13,9 +13,7 @@ class Posts extends Component { // eslint-disable-line react/prefer-stateless-fu
   // The above is no longer needed because state is being handled in the store now, which is 'Provided' to the Posts component.
 
   componentWillMount() {
-      fetch('https://jsonplaceholder.typicode.com/posts') // This is the API call. Will fetch dummy data first,
-        .then(res => res.json()) // then , a promise is created to map the data into a json object...
-        .then(data => this.setState({ posts: data })) // and finally, send our data to our component state.
+      this.props.fetchPosts();
   }
 
   render() {
@@ -34,4 +32,4 @@ class Posts extends Component { // eslint-disable-line react/prefer-stateless-fu
   }
 }
 
-export default Posts;
+export default connect(null, { fetchPosts })(Posts);
