@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
+
+import { connect } from 'react-redux';
+
+//Actions
+import { createPost } from '../actions/postActions'
 
 class PostForm extends Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) { // This is ALWAYS required to create a component level state.  Remember this.
@@ -18,21 +24,16 @@ class PostForm extends Component { // eslint-disable-line react/prefer-stateless
 
   onSubmit(e) {
       e.preventDefault();
+      if(!err) {
+          const post = {
+              title: this.state.title,
+              body: this.state.body
+          }
 
-      const post = {
-          title: this.state.title,
-          body: this.state.body
+          // Call action
+          this.props.createPost(post);
+          resetForm();
       }
-
-      fetch('https://jsonplaceholder.typicode.com/posts' , { // Although it is called 'fetch' this is actually a generic name for a request.  In this case, it will be a POST type request.
-          method: 'POST',
-          headers: {
-              'content-type' : 'application/json'
-          },
-          body: JSON.stringify(post)
-      })
-        .then(res => res.json())
-        .then(data => console.log(data));
   }
 
   render() {
@@ -57,4 +58,8 @@ class PostForm extends Component { // eslint-disable-line react/prefer-stateless
   }
 }
 
-export default PostForm;
+PostForm.propTypes = {
+    createPost: PropTypes.func.isRequired
+}
+
+export default connect(null, { createPost } )(PostForm);
