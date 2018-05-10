@@ -4,9 +4,16 @@ class PostForm extends Component { // eslint-disable-line react/prefer-stateless
   constructor(props) { // This is ALWAYS required to create a component level state.  Remember this.
       super(props); //
       this.state = { //
-      } //
+          title: '',
+          body: ' '
+      }; //
+
+      this.onChange = this.onChange.bind(this);
   } // - All this.
 
+  onChange(e) {
+      this.setState({ [e.target.name]: e.target.value });
+  }
 
   render() {
 
@@ -16,11 +23,11 @@ class PostForm extends Component { // eslint-disable-line react/prefer-stateless
         <form>
             <div>
                 <label>Title: </label> <br />
-                <input type="text" name="title" />
+                <input type="text" name="title" onChange={this.onChange} value={this.state.title}/>
             </div>
             <div>
                 <label>Body: </label> <br />
-                <textarea name="body" />
+                <textarea name="body" onChange={this.onChange} value={this.state.body}/>
             </div> <br />
 
             <button type="submit">Submit </button>
